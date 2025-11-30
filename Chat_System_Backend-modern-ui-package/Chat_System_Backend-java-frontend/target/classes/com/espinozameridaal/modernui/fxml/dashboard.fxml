@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.espinozameridaal.modernui.controllers.DashboardController"
+            styleClass="root">
+
+    <!-- Top header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="top-bar">
+            <children>
+                <StackPane styleClass="logo-circle-small">
+                    <children>
+                        <Label text="💬" styleClass="logo-emoji-small"/>
+                    </children>
+                </StackPane>
+                <Label text="Modern Chat" styleClass="top-title"/>
+                <Label text="•" styleClass="top-dot"/>
+                <Label fx:id="currentUserLabel" text="You" styleClass="top-user"/>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Main content -->
+    <center>
+        <BorderPane>
+            <!-- Left: chat sidebar -->
+            <left>
+                <VBox spacing="10.0" styleClass="sidebar">
+                    <children>
+                        <TextField fx:id="searchChatsField"
+                                   promptText="Search or start a chat"
+                                   styleClass="search-input"/>
+                        <ListView fx:id="chatsListView"
+                                  VBox.vgrow="ALWAYS"
+                                  styleClass="chat-list"/>
+                    </children>
+                </VBox>
+            </left>
+
+            <!-- Center: active chat -->
+            <center>
+                <VBox spacing="8.0" styleClass="chat-pane">
+                    <children>
+                        <!-- Chat header -->
+                        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="chat-header">
+                            <children>
+                                <StackPane styleClass="avatar-circle">
+                                    <children>
+                                        <Label text="AJ" styleClass="avatar-text"/>
+                                    </children>
+                                </StackPane>
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label fx:id="activeChatNameLabel"
+                                               text="Select a conversation"
+                                               styleClass="chat-title"/>
+                                        <Label fx:id="activeChatSubtitleLabel"
+                                               text=""
+                                               styleClass="chat-subtitle"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <!-- Messages -->
+                        <ListView fx:id="messagesListView"
+                                  VBox.vgrow="ALWAYS"
+                                  styleClass="messages-list"/>
+
+                        <!-- Message input bar -->
+                        <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="message-bar">
+                            <children>
+                                <Button text="+" styleClass="icon-button"/>
+                                <TextField fx:id="messageField"
+                                           promptText="Type a message..."
+                                           HBox.hgrow="ALWAYS"
+                                           styleClass="text-input"/>
+                                <Button text="Send"
+                                        onAction="#handleSendMessage"
+                                        styleClass="primary-button"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>
